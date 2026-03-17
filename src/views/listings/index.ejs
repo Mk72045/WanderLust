@@ -1,0 +1,24 @@
+<% layout("/layouts/boiler") %>
+
+<div class="row-cols-xxl-4 row row-cols-xl-3 row-cols-md-2  row-cols-sm-1 mt-3">
+    <% for(let list of listings) { %>
+        <a href="/listings/<%= list.id %>" class="listing-link">
+            <div class="card col listing-card" style="width: 20rem;">
+                <img src="<%= list.image %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+                <div class="card-img-overlay">
+                    <p></p>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text">
+                        <b><%= list.title %></b> <br>
+                        &#8377; <%= list.price.toLocaleString("en-IN") %>
+                    </p>
+                </div>
+                
+            </div>
+        </a>
+    <% } %>
+</div>
+
+                                                                        
