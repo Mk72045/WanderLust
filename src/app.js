@@ -105,3 +105,4 @@ app.use((err, req, res, next) => {
     let { status = 500, message = "Something went wrong" } = err;
     res.status(status).render("listings/error", { err });
 });
+ 
