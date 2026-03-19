@@ -1,50 +1,104 @@
 <% layout("/layouts/boiler") %>
 
 <div class="row mt-3">
-    <div class="col-8 offset-2">
-        <h1>Create a new listing </h1>
-        <form method="post" action="/listings/<%= list.id %>?_method=PUT" class="needs-validation" novalidate>
-            
-            <div class="mb-3 mt-3">
-                <label for="title" class="form-label">Title</label>
-                <input id="title" type="text" name="list[title]" value="<%= list.title %>" class="form-control" required>
-                <div class="invalid-feedback">Please enter a Title!</div>
-            </div>
+  <div class="col-8 offset-2">
+    <h1>Create a new listing</h1>
+    <form
+      method="post"
+      action="/listings/<%= list.id %>?_method=PUT"
+      class="needs-validation"
+      novalidate
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3 mt-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          id="title"
+          type="text"
+          name="list[title]"
+          value="<%= list.title %>"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Please enter a Title!</div>
+      </div>
 
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea id="description" name="list[description]" cols="20" rows="10" placeholder="description" class="form-control" required> <%= list.description %> </textarea>
-                <div class="invalid-feedback">Description should be valid!</div>
-            </div>
-            
-            <div class="mb-3">
-                <label for="location" class="form-label">Location</label>
-                <input id="location" type="text" name="list[location]" value="<%= list.location %>" class="form-control" required>
-                <div class="invalid-feedback">Location should be valid!</div>
-            </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          name="list[description]"
+          cols="20"
+          rows="10"
+          placeholder="description"
+          class="form-control"
+          required
+        >
+ <%= list.description %> </textarea
+        >
+        <div class="invalid-feedback">Description should be valid!</div>
+      </div>
 
-            <div class="row">
-                <div class="mb-3 col-md-4">
-                    <label for="price" class="form-label">Price </label>
-                    <input id="price" type="number" name="list[price]" value="<%= list.price %>" class="form-control" required>
-                    <div class="invalid-feedback">Price should be valid!</div>
-                </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input
+          id="location"
+          type="text"
+          name="list[location]"
+          value="<%= list.location %>"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Location should be valid!</div>
+      </div>
 
-                <div class="mb-3 col-md-8">
-                    <label for="country" class="form-label">Country </label>
-                    <input id="country" type="text" name="list[country]" value="<%= list.country %>" class="form-control" required>
-                    <div class="invalid-feedback">Country should be valid!</div>
-                </div>
-            </div>
+      <div class="row">
+        <div class="mb-3 col-md-4">
+          <label for="price" class="form-label">Price </label>
+          <input
+            id="price"
+            type="number"
+            name="list[price]"
+            value="<%= list.price %>"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Price should be valid!</div>
+        </div>
 
-            <div class="mb-3">
-                <label for="image" class="form-label">Image Link</label>
-                <input id="image" type="text" name="list[image]" value="<%= list.image %>" class="form-control" required>
-                <div class="invalid-feedback">Image should be valid!</div>
-            </div>
+        <div class="mb-3 col-md-8">
+          <label for="country" class="form-label">Country </label>
+          <input
+            id="country"
+            type="text"
+            name="list[country]"
+            value="<%= list.country %>"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Country should be valid!</div>
+        </div>
+      </div>
 
-            <button class="btn btn-dark add-btn mt-5 mb-3" type="submit">Apply Changes</button>
-            
-        </form>
-    </div>
+      <div class="mb-3">
+        <p>Old Image</p>
+        <img src="<%= oldImage %>" alt="Old Image"  class="edit-img">
+      </div>
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Image Link</label>
+        <input
+          id="image"
+          type="file"
+          name="list[image]"
+          class="form-control"
+        />
+        <div class="invalid-feedback">Image should be valid!</div>
+      </div>
+
+      <button class="btn btn-dark add-btn mt-5 mb-3" type="submit">
+        Apply Changes
+      </button>
+    </form>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const data = require("./data");
-const listing = require("../models/listing");
+const listing = require("../models/listings");
 
 const mongo = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -22,4 +22,4 @@ const cleardata = async () => {
 }
 
 
-// cleardata();
+cleardata();

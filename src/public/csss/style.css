@@ -115,4 +115,10 @@ img {
 .show-card {
     padding-left: 0;
     padding-right: 0;
+} 
+
+/* Edit Page */
+.edit-img {
+    height: 200px;
+    width: 300px;
 }

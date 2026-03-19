@@ -12,9 +12,8 @@ const listingSchema = new Schema({
         type: String
     },
     image: {
-        type: String,
-        default: "https://www.garofoli.com/wp-content/uploads/2023/10/total-look-garofoli-villa-nelle-marche.jpg",
-        set: (v) => v === "" ? "https://www.garofoli.com/wp-content/uploads/2023/10/total-look-garofoli-villa-nelle-marche.jpg" : v,
+        url: String,
+        filename: String
     },
     price: {
         type: Number
