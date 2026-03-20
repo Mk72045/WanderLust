@@ -64,25 +64,27 @@
         <% } %>
 
         <hr>
-        <p><b>All Reviews</b></p>
-
-        <div class="row">
-            <% for(let rev of list.reviews) { %>
-                <div class="card col-2 ms-3 mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title mt-3">@<%= rev.author.username %></h5>
-                        <p class="starability-result card-text" data-rating="<%= rev.rating %>"></p>
-                        <p class="card-text"><%= rev.comment %></p>
-                                                                       
-                        <% if(currentUser && currentUser._id.equals(rev.author._id)) { %>
-                             <form method="post" action="/listings/<%= list.id %>/reviews/<%= rev.id %>?_method=DELETE">
-                                <button class="btn btn-outline-dark btn-sm mb-3">Delete</button>
-                            </form>
-                        <% } %>
+        
+        <% if(list.reviews.length > 0) { %>
+            <div class="row">
+                <p><b>All Reviews</b></p>
+                <% for(let rev of list.reviews) { %>
+                    <div class="card col-2 ms-3 mb-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title mt-3">@<%= rev.author.username %></h5>
+                            <p class="starability-result card-text" data-rating="<%= rev.rating %>"></p>
+                            <p class="card-text"><%= rev.comment %></p>
+                                                                        
+                            <% if(currentUser && currentUser._id.equals(rev.author._id)) { %>
+                                <form method="post" action="/listings/<%= list.id %>/reviews/<%= rev.id %>?_method=DELETE">
+                                    <button class="btn btn-outline-dark btn-sm mb-3">Delete</button>
+                                </form>
+                            <% } %>
+                        </div>
                     </div>
-                </div>
-            <% } %>
-        </div>
+                <% } %>
+            </div>
+        <% } %>
     </div>
 </div>
 

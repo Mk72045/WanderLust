@@ -1,4 +1,5 @@
 const listing = require("../models/listings");
+const { cloudinary } = require("../cloudConfig");
 
 module.exports.showAllListings = async (req, res) => {
   let listings = await listing.find();
@@ -47,9 +48,13 @@ module.exports.editListing = async (req, res) => {
     return res.redirect("/listings");
   }
 
+  if (req.file) {
+    await cloudinary.uploader.destroy(list.image.filename);
+  }
   let updatedList = await listing.findByIdAndUpdate(id, { ...req.body.list }); // it update provided fields only
 
-  if (typeof req.file !== "undefined") {    // typeof used to check vlaue is undefined or not
+  if (typeof req.file !== "undefined") {
+    // typeof used to check vlaue is undefined or not
     let url = req.file.path;
     let filename = req.file.filename;
     updatedList.image = { url, filename };
@@ -82,12 +87,19 @@ module.exports.showListing = async (req, res) => {
 
 module.exports.destroyListing = async (req, res) => {
   let { id } = req.params;
-  let list = await listing.findByIdAndDelete(id);
+  let list = await listing.findById(id);
+
   if (!list) {
     req.flash("error", "This listing doesn't exists.");
     return res.redirect("/listings");
   }
 
+  // Step 2: Delete image from Cloudinary
+  if (list.image) {
+    await cloudinary.uploader.destroy(list.image.filename);
+  }
+
+  await listing.findByIdAndDelete(id);
   req.flash("success", "Listing is deleted successfully");
   res.redirect("/listings");
 };

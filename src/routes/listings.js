@@ -3,9 +3,9 @@ const router = express.Router({ mergeParams: true });
 const handleError = require("../utility/handleError");
 const { isLoggedIn, isOwner, validateListing } = require("../middleware");
 const listingController = require("../controller/listings");
-const multer = require("multer");
-const {storage} = require("../cloudConfig");
-const upload = multer({storage});
+const multer = require("multer");         // takes multipart-Form upload img form Form
+const {storage} = require("../cloudConfig");    
+const upload = multer({storage});    // set dest: storage, means set img storage area
 
 // show all and add new listing
 router
@@ -13,7 +13,7 @@ router
   .get(handleError(listingController.showAllListings))
   .post(
     isLoggedIn,
-    upload.single("list[image]"),
+    upload.single("list[image]"),   // 
     validateListing,
     handleError(listingController.addNewListing),
   );
@@ -41,16 +41,3 @@ router
 
 module.exports = router;
 
-// router.route("/").post(
-//   isLoggedIn,
-//   validateListing,
-//   upload.single("list[image]"),
-//   handleError(async (requestAnimationFrame, res) => {
-//     let list = req.body;
-//     let file = req.file;
-
-//     console.log(list);
-//     console.log(file);
-
-//   }),
-// );
