@@ -12,8 +12,17 @@ module.exports.addListingForm = (req, res) => {
 
 module.exports.addNewListing = async (req, res, next) => {
   let { list } = req.body;
-  let url = req.file.path;
-  let filename = req.file.filename;
+  let url = "";
+  let filename = "";
+  if (req.file) {
+    url = req.file.path;
+    filename = req.file.filename;
+  } else {
+    url =
+      "https://r2imghtlak.mmtcdn.com/r2-mmt-htl-image/htl-imgs/201410201436324827-36f63773-bdc9-4e5c-baef-10cba1e4575d.jpg";
+    filename = "default-file";
+  }
+
   list.owner = req.user.id;
 
   let newList = new listing(list);

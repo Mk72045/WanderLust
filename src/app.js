@@ -3,6 +3,8 @@ if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
 
+// console.log("mongo connection: ", process.env.ATLASDB_URL);
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
